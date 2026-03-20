@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
-import "./bubble-menu.css";
+import "./header.css";
 
 const DEFAULT_ITEMS = [
   {
@@ -41,7 +41,7 @@ const DEFAULT_ITEMS = [
   },
 ];
 
-export default function BubbleMenu({
+function Header({
   logo,
   onMenuClick,
   className,
@@ -155,87 +155,90 @@ export default function BubbleMenu({
 
   return (
     <>
-      <nav
-        className={containerClassName}
-        style={style}
-        aria-label="Main navigation"
-      >
-        <div
-          className="bubble logo-bubble"
-          aria-label="Logo"
-          style={{ background: menuBg }}
+      <header>
+        <nav
+          style={style}
+          className={containerClassName}
+          aria-label="Main navigation"
         >
-          <span className="logo-content">
-            {typeof logo === "string" ? (
-              <img src={logo} alt="Logo" className="bubble-logo" />
-            ) : (
-              logo
-            )}
-          </span>
-        </div>
-
-        <button
-          type="button"
-          className={`bubble toggle-bubble menu-btn ${
-            isMenuOpen ? "open" : ""
-          }`}
-          onClick={handleToggle}
-          aria-label={menuAriaLabel}
-          aria-pressed={isMenuOpen}
-          style={{ background: menuBg }}
-        >
-          <span
-            className="menu-line"
-            style={{ background: menuContentColor }}
-          />
-          <span
-            className="menu-line short"
-            style={{ background: menuContentColor }}
-          />
-        </button>
-      </nav>
-      {showOverlay && (
-        <div
-          ref={overlayRef}
-          className={`bubble-menu-items ${
-            useFixedPosition ? "fixed" : "absolute"
-          }`}
-          aria-hidden={!isMenuOpen}
-        >
-          <ul className="pill-list" role="menu" aria-label="Menu links">
-            {menuItems.map((item, idx) => (
-              <li key={idx} role="none" className="pill-col">
-                <a
-                  role="menuitem"
-                  href={item.href}
-                  aria-label={item.ariaLabel || item.label}
-                  className="pill-link"
-                  style={{
-                    "--item-rot": `${item.rotation ?? 0}deg`,
-                    "--pill-bg": menuBg,
-                    "--pill-color": menuContentColor,
-                    "--hover-bg": item.hoverStyles?.bgColor || "#f3f4f6",
-                    "--hover-color":
-                      item.hoverStyles?.textColor || menuContentColor,
-                  }}
-                  ref={(el) => {
-                    if (el) bubblesRef.current[idx] = el;
-                  }}
-                >
-                  <span
-                    className="pill-label"
+          <div
+            className="bubble logo-bubble"
+            aria-label="Logo"
+            style={{ background: menuBg }}
+          >
+            <Link to="/" className="logo-content">
+              {typeof logo === "string" ? (
+                <img src={logo} alt="Logo" className="bubble-logo" />
+              ) : (
+                logo
+              )}
+            </Link>
+          </div>
+          <button
+            type="button"
+            className={`bubble toggle-bubble menu-btn ${
+              isMenuOpen ? "open" : ""
+            }`}
+            onClick={handleToggle}
+            aria-label={menuAriaLabel}
+            aria-pressed={isMenuOpen}
+            style={{ background: menuBg }}
+          >
+            <span
+              className="menu-line"
+              style={{ background: menuContentColor }}
+            />
+            <span
+              className="menu-line short"
+              style={{ background: menuContentColor }}
+            />
+          </button>
+        </nav>
+        {showOverlay && (
+          <div
+            ref={overlayRef}
+            className={`bubble-menu-items ${
+              useFixedPosition ? "fixed" : "absolute"
+            }`}
+            aria-hidden={!isMenuOpen}
+          >
+            <ul className="pill-list" role="menu" aria-label="Menu links">
+              {menuItems.map((item, idx) => (
+                <li key={idx} role="none" className="pill-col">
+                  <Link
+                    role="menuitem"
+                    to={item.href}
+                    aria-label={item.ariaLabel || item.label}
+                    className="pill-link"
+                    style={{
+                      "--item-rot": `${item.rotation ?? 0}deg`,
+                      "--pill-bg": menuBg,
+                      "--pill-color": menuContentColor,
+                      "--hover-bg": item.hoverStyles?.bgColor || "#f3f4f6",
+                      "--hover-color":
+                        item.hoverStyles?.textColor || menuContentColor,
+                    }}
                     ref={(el) => {
-                      if (el) labelRefs.current[idx] = el;
+                      if (el) bubblesRef.current[idx] = el;
                     }}
                   >
-                    {item.label}
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+                    <span
+                      className="pill-label"
+                      ref={(el) => {
+                        if (el) labelRefs.current[idx] = el;
+                      }}
+                    >
+                      {item.label}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </header>
     </>
   );
 }
+
+export default Header;
