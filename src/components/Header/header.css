@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 0 2em;
+  padding: 2.4rem 6.4rem;
   pointer-events: none;
   z-index: 99;
 }
@@ -93,7 +93,9 @@
   border-radius: 2px;
   display: block;
   margin: 0 auto;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
   transform-origin: center;
 }
 
@@ -175,6 +177,16 @@
   margin-left: calc(100% / 3);
 }
 
+.bubble-menu-items::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+  z-index: -1;
+}
+
 .bubble-menu-items .pill-link {
   --pill-bg: #ffffff;
   --pill-color: #111;
@@ -198,7 +210,9 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
   will-change: transform;
   box-sizing: border-box;
   white-space: nowrap;

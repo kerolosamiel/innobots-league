@@ -109,7 +109,7 @@ function Header({
               duration: animationDuration,
               ease: "power3.out",
             },
-            `-=${animationDuration * 0.9}`
+            `-=${animationDuration * 0.9}`,
           );
         }
       });
@@ -142,7 +142,7 @@ function Header({
         bubbles.forEach((bubble, i) => {
           const item = menuItems[i];
           if (bubble && item) {
-            const rotation = isDesktop ? item.rotation ?? 0 : 0;
+            const rotation = isDesktop ? (item.rotation ?? 0) : 0;
             gsap.set(bubble, { rotation });
           }
         });
@@ -221,6 +221,7 @@ function Header({
                     ref={(el) => {
                       if (el) bubblesRef.current[idx] = el;
                     }}
+                    onClick={handleToggle}
                   >
                     <span
                       className="pill-label"
