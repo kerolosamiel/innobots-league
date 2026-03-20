@@ -109,7 +109,7 @@ export default function BubbleMenu({
               duration: animationDuration,
               ease: "power3.out",
             },
-            `-=${animationDuration * 0.9}`,
+            `-=${animationDuration * 0.9}`
           );
         }
       });
@@ -142,7 +142,7 @@ export default function BubbleMenu({
         bubbles.forEach((bubble, i) => {
           const item = menuItems[i];
           if (bubble && item) {
-            const rotation = isDesktop ? (item.rotation ?? 0) : 0;
+            const rotation = isDesktop ? item.rotation ?? 0 : 0;
             gsap.set(bubble, { rotation });
           }
         });
@@ -176,7 +176,9 @@ export default function BubbleMenu({
 
         <button
           type="button"
-          className={`bubble toggle-bubble menu-btn ${isMenuOpen ? "open" : ""}`}
+          className={`bubble toggle-bubble menu-btn ${
+            isMenuOpen ? "open" : ""
+          }`}
           onClick={handleToggle}
           aria-label={menuAriaLabel}
           aria-pressed={isMenuOpen}
@@ -195,7 +197,9 @@ export default function BubbleMenu({
       {showOverlay && (
         <div
           ref={overlayRef}
-          className={`bubble-menu-items ${useFixedPosition ? "fixed" : "absolute"}`}
+          className={`bubble-menu-items ${
+            useFixedPosition ? "fixed" : "absolute"
+          }`}
           aria-hidden={!isMenuOpen}
         >
           <ul className="pill-list" role="menu" aria-label="Menu links">
