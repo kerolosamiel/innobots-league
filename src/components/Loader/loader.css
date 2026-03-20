@@ -1,0 +1,26 @@
+.loader {
+  margin-top: 4.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.loader .outer {
+  width: 400px;
+  height: 1.5rem;
+  background-color: #111828;
+  border-radius: 1rem;
+}
+
+.loader .outer .inner {
+  height: 100%;
+  background: linear-gradient(90deg, #1b3b6e, #19439e, #3677df);
+  border-radius: 1rem;
+  animation: loading 2s linear infinite;
+}
+
+.loader p {
+  font-size: 1.8rem;
+  color: #ffffff;
+  font-weight: 500;
+}
